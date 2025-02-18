@@ -1,5 +1,6 @@
 ﻿using apiSelfStudy.Data;
 using apiSelfStudy.Dtos.Stock;
+using apiSelfStudy.Helpers;
 using apiSelfStudy.Interfaces;
 using apiSelfStudy.Models;
 using Microsoft.EntityFrameworkCore;
@@ -35,19 +36,37 @@ namespace apiSelfStudy.Repository
             return stockModel;
         }
 
-        public async Task<List<Stock>> GetAllAsync()
+        public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            return await _context.Stocks.ToListAsync();
+            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.CompanyName))
+            {
+                stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
+            }
+
+            return await stocks.ToListAsync();
         }
+
 
         public async Task<Stock?> GetByIdAsync(int id)
         {
-            return await _context.Stocks.FindAsync(id);
+            return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public Task<bool> StockExist(int id)
+        {
+            return _context.Stocks.AnyAsync(i => i.Id == id);
         }
 
         public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto stockDto)
         {
-            var existingStock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+            var existingStock = await _context.Stocks.FirstOrDefaultAsync(i => i.Id == id);
 
             if (existingStock is null)
             {
