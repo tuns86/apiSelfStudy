@@ -4,6 +4,7 @@ using apiSelfStudy.Helpers;
 using apiSelfStudy.Interfaces;
 using apiSelfStudy.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace apiSelfStudy.Repository
 {
@@ -39,18 +40,32 @@ namespace apiSelfStudy.Repository
         public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
             var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
-
+            
+            //filter by company name
             if (!string.IsNullOrWhiteSpace(query.CompanyName))
             {
                 stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
             }
 
+            // filter by symbol
             if (!string.IsNullOrWhiteSpace(query.Symbol))
             {
                 stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
             }
+             // sort
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                {
+                    stocks = query.IsDecsending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
+                }
+            }
 
-            return await stocks.ToListAsync();
+            // paging
+            var skipNumber = (query.PageNumber - 1) * query.PageSize;
+
+
+            return await stocks.Skip(skipNumber).Take(query.PageSize).ToListAsync();
         }
 
 
