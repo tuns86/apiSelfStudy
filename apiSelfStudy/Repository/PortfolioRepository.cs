@@ -12,9 +12,17 @@ namespace apiSelfStudy.Repository
         {
             _context = context;
         }
-        public Task<List<Stock>> GetUserPortfolio(AppUser user)
+
+        public async Task<Portfolio> CreateAsync(Portfolio portfolio)
         {
-            return _context.Portfolios.Where(u => u.AppUserId == user.Id)
+            await _context.Portfolios.AddAsync(portfolio);
+            await _context.SaveChangesAsync();
+            return portfolio;
+        }
+
+        public async Task<List<Stock>> GetUserPortfolio(AppUser user)
+        {
+            return await _context.Portfolios.Where(u => u.AppUserId == user.Id)
                 .Select(stock => new Stock
                 {
                     Id = stock.StockId,

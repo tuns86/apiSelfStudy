@@ -75,9 +75,14 @@ namespace apiSelfStudy.Repository
             return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public Task<bool> StockExist(int id)
+        public async Task<Stock?> GetBySymbolAsync(string symbol)
         {
-            return _context.Stocks.AnyAsync(i => i.Id == id);
+            return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
+        }
+
+        public async Task<bool> StockExist(int id)
+        {
+            return await _context.Stocks.AnyAsync(i => i.Id == id);
         }
 
         public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto stockDto)
