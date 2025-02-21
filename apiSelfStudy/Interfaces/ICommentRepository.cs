@@ -1,6 +1,6 @@
-﻿using apiSelfStudy.Models;
+﻿using api.Models;
 
-namespace apiSelfStudy.Interfaces
+namespace api.Interfaces
 {
     public interface ICommentRepository
     {

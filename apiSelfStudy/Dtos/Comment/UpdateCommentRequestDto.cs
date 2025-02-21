@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace apiSelfStudy.Dtos.Comment
+namespace api.Dtos.Comment
 {
     public class UpdateCommentRequestDto
     {

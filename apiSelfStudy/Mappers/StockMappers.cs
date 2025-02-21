@@ -1,7 +1,7 @@
-﻿using apiSelfStudy.Dtos.Stock;
-using apiSelfStudy.Models;
+﻿using api.Dtos.Stock;
+using api.Models;
 
-namespace apiSelfStudy.Mappers
+namespace api.Mappers
 {
     public static class StockMappers
     {

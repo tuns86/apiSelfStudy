@@ -1,12 +1,12 @@
-﻿using apiSelfStudy.Extensions;
-using apiSelfStudy.Interfaces;
-using apiSelfStudy.Models;
+﻿using api.Extensions;
+using api.Interfaces;
+using api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace apiSelfStudy.Controllers
+namespace api.Controllers
 {
     [Route("api/portfolio")]
     [ApiController]
@@ -62,6 +62,29 @@ namespace apiSelfStudy.Controllers
             {
                 return Created();
             }
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> DeletePortfolio(string symbol)
+        {
+            var username = User.GetUserName();
+            var appUser = await _userManager.FindByNameAsync(username);
+
+            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+
+            var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
+
+            if(filteredStock.Count() == 1)
+            {
+                await _portfolioRepo.DeletePortfolio(appUser, symbol);
+            }
+            else
+            {
+                return BadRequest("Stock not in your portfolio");
+            }
+
+            return Ok();
         }
     }
 }

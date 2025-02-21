@@ -1,12 +1,12 @@
-﻿using apiSelfStudy.Dtos.Account;
-using apiSelfStudy.Interfaces;
-using apiSelfStudy.Models;
+﻿using api.Dtos.Account;
+using api.Interfaces;
+using api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace apiSelfStudy.Controllers
+namespace api.Controllers
 {
     [Route("api/account")]
     [ApiController]

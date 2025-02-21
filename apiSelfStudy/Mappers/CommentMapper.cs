@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-using apiSelfStudy.Dtos.Comment;
-using apiSelfStudy.Models;
+using api.Dtos.Comment;
+using api.Models;
 
-namespace apiSelfStudy.Mappers
+namespace api.Mappers
 {
     public static class CommentMapper
     {
@@ -14,6 +14,7 @@ namespace apiSelfStudy.Mappers
                 Title = commentModel.Title,
                 Content = commentModel.Content,
                 CreatedOn = commentModel.CreatedOn,
+                CreatedBy = commentModel.AppUser.UserName,
                 StockId = commentModel.StockId
             };
         }

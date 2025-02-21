@@ -1,13 +1,12 @@
-﻿
-using apiSelfStudy.Data;
-using apiSelfStudy.Dtos.Stock;
-using apiSelfStudy.Helpers;
-using apiSelfStudy.Interfaces;
-using apiSelfStudy.Models;
+﻿using api.Data;
+using api.Dtos.Stock;
+using api.Helpers;
+using api.Interfaces;
+using api.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace apiSelfStudy.Repository
+namespace api.Repository
 {
     public class StockRepository : IStockRepository
     {
@@ -40,7 +39,7 @@ namespace apiSelfStudy.Repository
 
         public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+            var stocks = _context.Stocks.Include(c => c.Comments).ThenInclude(a => a.AppUser).AsQueryable();
             
             //filter by company name
             if (!string.IsNullOrWhiteSpace(query.CompanyName))

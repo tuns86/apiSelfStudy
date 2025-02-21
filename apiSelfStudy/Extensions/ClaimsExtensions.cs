@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
-namespace apiSelfStudy.Extensions
+namespace api.Extensions
 {
     public static class ClaimsExtensions
     {

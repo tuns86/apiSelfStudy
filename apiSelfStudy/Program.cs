@@ -1,8 +1,8 @@
-using apiSelfStudy.Data;
-using apiSelfStudy.Interfaces;
-using apiSelfStudy.Models;
-using apiSelfStudy.Repository;
-using apiSelfStudy.Service;
+using api.Data;
+using api.Interfaces;
+using api.Models;
+using api.Repository;
+using api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

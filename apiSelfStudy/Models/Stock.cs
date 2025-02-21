@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace apiSelfStudy.Models
+namespace api.Models
 {
     [Table("Stocks")]
     public class Stock

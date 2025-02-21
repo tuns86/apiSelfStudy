@@ -1,11 +1,11 @@
-﻿using apiSelfStudy.Interfaces;
-using apiSelfStudy.Models;
+﻿using api.Interfaces;
+using api.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace apiSelfStudy.Service
+namespace api.Service
 {
     public class TokenService : ITokenService
     {

@@ -1,7 +1,7 @@
-﻿using apiSelfStudy.Dtos.Comment;
+﻿using api.Dtos.Comment;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace apiSelfStudy.Dtos.Stock
+namespace api.Dtos.Stock
 {
     public class StockDto
     {

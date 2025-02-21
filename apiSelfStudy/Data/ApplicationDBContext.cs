@@ -1,9 +1,9 @@
-﻿using apiSelfStudy.Models;
+﻿using api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace apiSelfStudy.Data
+namespace api.Data
 {
     public class ApplicationDBContext : IdentityDbContext<AppUser>
     {

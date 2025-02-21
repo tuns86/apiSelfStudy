@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace apiSelfStudy.Dtos.Stock
+namespace api.Dtos.Stock
 {
     public class CreateStockRequestDto
     {

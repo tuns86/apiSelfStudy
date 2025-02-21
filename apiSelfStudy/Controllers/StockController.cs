@@ -1,14 +1,14 @@
-﻿using apiSelfStudy.Dtos.Stock;
-using apiSelfStudy.Helpers;
-using apiSelfStudy.Interfaces;
-using apiSelfStudy.Data;
-using apiSelfStudy.Mappers;
+﻿using api.Dtos.Stock;
+using api.Helpers;
+using api.Interfaces;
+using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
-namespace apiSelfStudy.Controllers
+namespace api.Controllers
 {
     [Route("api/stock")]
     [ApiController]
@@ -29,9 +29,9 @@ namespace apiSelfStudy.Controllers
 
             var stock = await _stockRepo.GetAllAsync(query);
 
-            var stockDto = stock.Select(s => s.ToStockDto());
+            var stockDto = stock.Select(s => s.ToStockDto()).ToList();
 
-            return Ok(stock);
+            return Ok(stockDto);
         }
 
         [HttpGet]

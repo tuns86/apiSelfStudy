@@ -1,8 +1,8 @@
-﻿using apiSelfStudy.Dtos.Stock;
-using apiSelfStudy.Helpers;
-using apiSelfStudy.Models;
+﻿using api.Dtos.Stock;
+using api.Helpers;
+using api.Models;
 
-namespace apiSelfStudy.Interfaces
+namespace api.Interfaces
 {
     public interface IStockRepository
     {

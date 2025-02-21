@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using apiSelfStudy.Data;
+using api.Data;
 
 #nullable disable
 
-namespace apiSelfStudy.Migrations
+namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
     partial class ApplicationDBContextModelSnapshot : ModelSnapshot
@@ -51,13 +51,13 @@ namespace apiSelfStudy.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2f2bf630-e181-493f-ae10-abf6c11f01cb",
+                            Id = "405b52fe-92af-46e0-8b98-d5fce2447bb8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a62287b8-0441-473b-914f-46c194a314a1",
+                            Id = "d931d71a-4620-4cd5-9932-c1d489eda933",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -169,7 +169,7 @@ namespace apiSelfStudy.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.AppUser", b =>
+            modelBuilder.Entity("api.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -234,13 +234,17 @@ namespace apiSelfStudy.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.Comment", b =>
+            modelBuilder.Entity("api.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -258,12 +262,14 @@ namespace apiSelfStudy.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.HasIndex("StockId");
 
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.Portfolio", b =>
+            modelBuilder.Entity("api.Models.Portfolio", b =>
                 {
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
@@ -278,7 +284,7 @@ namespace apiSelfStudy.Migrations
                     b.ToTable("Portfolios");
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.Stock", b =>
+            modelBuilder.Entity("api.Models.Stock", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -323,7 +329,7 @@ namespace apiSelfStudy.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("apiSelfStudy.Models.AppUser", null)
+                    b.HasOne("api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -332,7 +338,7 @@ namespace apiSelfStudy.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("apiSelfStudy.Models.AppUser", null)
+                    b.HasOne("api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -347,7 +353,7 @@ namespace apiSelfStudy.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("apiSelfStudy.Models.AppUser", null)
+                    b.HasOne("api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -356,31 +362,39 @@ namespace apiSelfStudy.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("apiSelfStudy.Models.AppUser", null)
+                    b.HasOne("api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.Comment", b =>
+            modelBuilder.Entity("api.Models.Comment", b =>
                 {
-                    b.HasOne("apiSelfStudy.Models.Stock", "Stock")
+                    b.HasOne("api.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("api.Models.Stock", "Stock")
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Stock");
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.Portfolio", b =>
+            modelBuilder.Entity("api.Models.Portfolio", b =>
                 {
-                    b.HasOne("apiSelfStudy.Models.AppUser", "AppUser")
+                    b.HasOne("api.Models.AppUser", "AppUser")
                         .WithMany("Portfolios")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("apiSelfStudy.Models.Stock", "Stock")
+                    b.HasOne("api.Models.Stock", "Stock")
                         .WithMany("Portfolios")
                         .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,12 +405,12 @@ namespace apiSelfStudy.Migrations
                     b.Navigation("Stock");
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.AppUser", b =>
+            modelBuilder.Entity("api.Models.AppUser", b =>
                 {
                     b.Navigation("Portfolios");
                 });
 
-            modelBuilder.Entity("apiSelfStudy.Models.Stock", b =>
+            modelBuilder.Entity("api.Models.Stock", b =>
                 {
                     b.Navigation("Comments");
 

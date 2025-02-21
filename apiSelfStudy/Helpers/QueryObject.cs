@@ -1,4 +1,4 @@
-﻿namespace apiSelfStudy.Helpers
+﻿namespace api.Helpers
 {
     public class QueryObject
     {
