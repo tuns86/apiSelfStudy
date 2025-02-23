@@ -1,74 +1,28 @@
 <script setup lang="ts">
-import Card from "@/components/Card/Card.vue";
+import CardList from "@/components/CardList/CardList.vue";
+import { ref } from "vue";
+import Search from "./components/Search/Search.vue";
+
+const search = ref<string>("");
+
+const handleChange = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  search.value = target.value;
+  console.log(e);
+};
+
+const onClick = (e: Event) => {
+  console.log(e);
+};
 </script>
 
 <template>
-  <Card title="AAPL" :price="110"
-    description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, officia!"
-    imageUrl="https://images.unsplash.com/photo-1612428978260-2b9c7df20150?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
-  />
+  <div class="App">
+    <Search :onClick="onClick" :search="search" :handleChange="handleChange" />
+    <CardList />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+@import "@/assets/App.css";
 </style>

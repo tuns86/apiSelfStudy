@@ -1,20 +1,26 @@
 <script setup lang="ts">
-const props = defineProps<{
-  title: string;
+interface Props {
+  companyName: string;
+  ticker: string;
   price: number;
-  description: string;
-  imageUrl: string;
-}>();
+};
+
+const props = defineProps<Props>();
 </script>
 
 <template>
   <div class="card">
-    <img :src="imageUrl" alt="Product Image" />
+    <img
+      src="https://images.unsplash.com/photo-1612428978260-2b9c7df20150?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+      alt="Image"
+    />
     <div class="details">
-      <h2>{{ title }}</h2>
-      <p>${{ price }}</p>
+      <h2>{{ props.companyName }} ({{ props.ticker }})</h2>
+      <p>${{ props.price }}</p>
     </div>
-    <p class="info">{{ description }}</p>
+    <p class="info">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, officia!
+    </p>
   </div>
 </template>
 
