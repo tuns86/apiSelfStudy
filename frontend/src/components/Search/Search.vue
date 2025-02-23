@@ -12,7 +12,7 @@ const props = defineProps<Props>();
 
 <template>
   <div>
-    <input :value="props.search" @input="props.handleChange" />
-    <button @click="props.onClick">Tìm kiếm</button>
+    <input :value="props.search" @input="props.handleChange" placeholder="Search..." />
+    <button @click="props.onClick">Button</button>
   </div>
 </template>
