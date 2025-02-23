@@ -6,12 +6,13 @@ import CardList from "./components/CardList/CardList.vue";
 import Search from "./components/Search/Search.vue";
 
 const search = ref<string>('');
-const searchResult = ref<CompanySearch[]>();
+const searchResult = ref<CompanySearch[]>([]);
 const serverError = ref<string | null>(null);
 
 const handleChange = (e: Event) => {
   const target = e.target as HTMLInputElement;
   search.value = target.value;
+  console.log(e);
 };
 
 const onClick = async () => {
@@ -29,7 +30,8 @@ const onClick = async () => {
 <template>
   <div class="App">
     <Search :onClick="onClick" :search="search" :handleChange="handleChange" />
-    <CardList />
+    <div v-if="serverError">Unable to connect to API</div>
+    <CardList :searchResults="searchResult" />
   </div>
 </template>
 

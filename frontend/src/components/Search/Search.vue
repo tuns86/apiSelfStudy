@@ -16,3 +16,7 @@ const props = defineProps<Props>();
     <button @click="props.onClick">Button</button>
   </div>
 </template>
+
+<style scoped>
+@import "@/assets/Search/Search.css";
+</style>
