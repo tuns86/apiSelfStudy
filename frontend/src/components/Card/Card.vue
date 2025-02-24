@@ -14,25 +14,20 @@ const emit = defineEmits<{
 }>();
 
 const onPortfolioCreate = (symbol: string) => {
-  emit("portfolioCreate", symbol);
-}
+  emit("portfolioCreate", symbol); // Phát sự kiện lên CardList.vue
+};
 </script>
 
 <template>
-  <div :key="id" :id="id" class="card">
-    <div class="details">
-      <h2>
-        {{ props.searchResult.name }} ({{ props.searchResult.symbol }})
-      </h2>
-      <p>{{ props.searchResult.currency }}</p>
-    </div>
-    <p class="info">
-      {{ props.searchResult.exchangeShortName }} - {{ props.searchResult.stockExchange }}
+  <div class="flex flex-col items-center justify-between w-full p-6 bg-slate-100 rounded-lg md:flex-row" :id="id">
+
+    <h2 class="font-bold text-center text-veryDarkViolet md:text-left">
+      {{ searchResult.name }} ({{ searchResult.symbol }})
+    </h2>
+    <p class="text-veryDarkBlue">{{ searchResult.currency }}</p>
+    <p class="font-bold text-veryDarkBlue">
+      {{ searchResult.exchangeShortName }} - {{ searchResult.stockExchange }}
     </p>
-    <AddPortfolio @portfolioCreate="onPortfolioCreate" :symbol="props.searchResult.symbol" />
+    <AddPortfolio @portfolioCreate="onPortfolioCreate" :symbol="searchResult.symbol" />
   </div>
 </template>
-
-<style scoped>
-@import "./Card.css";
-</style>

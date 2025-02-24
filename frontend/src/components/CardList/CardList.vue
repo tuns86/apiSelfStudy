@@ -19,18 +19,13 @@ const onPortfolioCreate = (symbol: string) => {
 </script>
 
 <template>
-   <div v-if="props.searchResults.length > 0">
-    <Card
-      v-for="result in props.searchResults"
-      :key="uuidv4()"
-      :id="result.symbol"
-      :searchResult="result"
-      @portfolioCreate="onPortfolioCreate"
-    />
+  <div>
+    <template v-if="searchResults.length > 0">
+      <Card v-for="result in props.searchResults" :key="uuidv4()" :id="result.symbol" :searchResult="result"
+        @portfolioCreate="onPortfolioCreate" />
+    </template>
+    <p v-else class="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+      No results!
+    </p>
   </div>
-  <h1 v-else>No results!</h1>
 </template>
-
-<style scoped>
-@import "./CardList.css";
-</style>

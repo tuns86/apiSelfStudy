@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
+import { defineEmits, defineProps } from "vue";
 
 interface Props {
   symbol: string;
@@ -13,20 +13,17 @@ const emit = defineEmits<{
 
 const onSubmit = (event: Event) => {
   event.preventDefault();
-  console.log(event);
   emit("portfolioCreate", props.symbol);
 };
 </script>
 
 <template>
-  <form @submit="onSubmit">
-    <input type="hidden" :value="symbol" readonly />
-    <button type="submit" class="button">
-      Add
-    </button>
-  </form>
+  <div class="flex flex-col items-center justify-end flex-1 space-x-4 space-y-2 md:flex-row md:space-y-0">
+    <form @submit="onSubmit">
+      <input type="hidden" name="symbol" :value="symbol" readonly />
+      <button type="submit" class="p-2 px-8 text-white bg-darkBlue rounded-lg hover:opacity-70 focus:outline-none">
+        Add
+      </button>
+    </form>
+  </div>
 </template>
-
-<style scoped>
-@import "./AddPortfolio.css";
-</style>

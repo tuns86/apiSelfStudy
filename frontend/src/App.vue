@@ -3,9 +3,12 @@ import { ref } from "vue";
 import { searchCompanies } from './api';
 import type { CompanySearch } from "./company";
 import CardList from "./components/CardList/CardList.vue";
+import Navbar from "./components/Navbar/Navbar.vue";
+import ListPortfolio from "./components/Portfolio/ListPortfolio/ListPortfolio.vue";
 import Search from "./components/Search/Search.vue";
 
 const search = ref<string>('');
+const portfolioValues = ref<string[]>([]);
 const searchResult = ref<CompanySearch[]>([]);
 const serverError = ref<string | null>(null);
 
@@ -15,8 +18,13 @@ const handleSearchChange = (e: Event) => {
 };
 
 const onPortfolioCreate = (symbol: string) => {
+  if (!symbol || portfolioValues.value.includes(symbol)) return;
+  portfolioValues.value.push(symbol);
 };
 
+const onPortfolioDelete = (symbol: string) => {
+  portfolioValues.value = portfolioValues.value.filter((value) => value !== symbol);
+};
 
 const onSearchSubmit = async (e: Event) => {
   e.preventDefault();
@@ -31,12 +39,10 @@ const onSearchSubmit = async (e: Event) => {
 
 <template>
   <div class="App">
+    <Navbar />
     <Search :onSearchSubmit="onSearchSubmit" :search="search" :handleSearchChange="handleSearchChange" />
     <div v-if="serverError">Unable to connect to API</div>
+    <ListPortfolio :portfolioValues="portfolioValues" :onPortfolioDelete="onPortfolioDelete" />
     <CardList :searchResults="searchResult" @portfolioCreate="onPortfolioCreate" />
   </div>
 </template>
-
-<style scoped>
-@import "@/assets/App.css";
-</style>
