@@ -9,29 +9,31 @@ const search = ref<string>('');
 const searchResult = ref<CompanySearch[]>([]);
 const serverError = ref<string | null>(null);
 
-const handleChange = (e: Event) => {
+const handleSearchChange = (e: Event) => {
   const target = e.target as HTMLInputElement;
   search.value = target.value;
-  console.log(e);
 };
 
-const onClick = async () => {
+const onPortfolioCreate = (symbol: string) => {
+};
 
+
+const onSearchSubmit = async (e: Event) => {
+  e.preventDefault();
   const result = await searchCompanies(search.value);
   if (typeof result === "string") {
     serverError.value = result;
   } else if (Array.isArray(result)) {
     searchResult.value = [...result];
   }
-  console.log(searchResult.value);
 };
 </script>
 
 <template>
   <div class="App">
-    <Search :onClick="onClick" :search="search" :handleChange="handleChange" />
+    <Search :onSearchSubmit="onSearchSubmit" :search="search" :handleSearchChange="handleSearchChange" />
     <div v-if="serverError">Unable to connect to API</div>
-    <CardList :searchResults="searchResult" />
+    <CardList :searchResults="searchResult" @portfolioCreate="onPortfolioCreate" />
   </div>
 </template>
 

@@ -2,9 +2,9 @@
 import { defineProps } from "vue";
 
 interface Props {
-  onClick: (e: Event) => void;
+  onSearchSubmit: (e: Event) => void;
   search: string | undefined;
-  handleChange: (e: Event) => void;
+  handleSearchChange: (e: Event) => void;
 }
 
 const props = defineProps<Props>();
@@ -12,11 +12,13 @@ const props = defineProps<Props>();
 
 <template>
   <div>
-    <input :value="props.search" @input="props.handleChange" placeholder="Search..." />
-    <button @click="props.onClick">Button</button>
+    <form @submit="props.onSearchSubmit($event)">
+      <input :value="props.search" @input="props.handleSearchChange($event)" />
+    </form>
   </div>
 </template>
 
+
 <style scoped>
-@import "@/assets/Search/Search.css";
+@import "./Search.css";
 </style>

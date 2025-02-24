@@ -8,20 +8,29 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+const emit = defineEmits<{
+  (e: "portfolioCreate", symbol: string): void;
+}>();
+
+const onPortfolioCreate = (symbol: string) => {
+  emit("portfolioCreate", symbol);
+};
 </script>
 
 <template>
-  <div v-if="props.searchResults.length > 0">
+   <div v-if="props.searchResults.length > 0">
     <Card
-    v-for="result in props.searchResults"
-    :id="result.symbol"
-    :key="uuidv4()"
-    :searchResult="result"
-  />
+      v-for="result in props.searchResults"
+      :key="uuidv4()"
+      :id="result.symbol"
+      :searchResult="result"
+      @portfolioCreate="onPortfolioCreate"
+    />
   </div>
-  <h1 v-else>No results</h1>
+  <h1 v-else>No results!</h1>
 </template>
 
 <style scoped>
-@import "@/assets/CardList/CardList.css";
+@import "./CardList.css";
 </style>
