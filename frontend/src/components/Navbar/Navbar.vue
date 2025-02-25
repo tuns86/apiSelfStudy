@@ -8,9 +8,13 @@ import logo from "./logo.png";
     <div class="flex items-center justify-between">
       <!-- Logo và Dashboard -->
       <div class="flex items-center space-x-20">
-        <img :src="logo" alt="Logo" />
+        <router-link to="/">
+          <img :src="logo" alt="" />
+        </router-link>
         <div class="hidden font-bold lg:flex">
-          <a href="#" class="text-black hover:text-darkBlue">Dashboard</a>
+          <router-link to="/search" class="text-black hover:text-darkBlue">
+            Search
+          </router-link>
         </div>
       </div>
 

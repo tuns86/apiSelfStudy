@@ -23,10 +23,10 @@ const onPortfolioDelete = (symbol: string) => {
     </h2>
     <div
       class="relative flex flex-col items-center max-w-5xl mx-auto space-y-10 px-10 mb-5 md:px-6 md:space-y-0 md:space-x-7 md:flex-row">
-      <template v-if="portfolioValues.length > 0">
+      <template v-if="props.portfolioValues.length > 0">
         <CardPortfolio v-for="portfolioValue in portfolioValues" :portfolioValue="portfolioValue"
           @portfolio-delete="onPortfolioDelete" />
       </template>
-    </div>s
+    </div>
   </section>
 </template>

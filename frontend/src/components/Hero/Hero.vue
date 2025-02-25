@@ -14,9 +14,9 @@ import hero from "./Hero.png";
           Search relevant financial documents without fear mongering and fake news.
         </p>
         <div class="mx-auto lg:mx-0">
-          <a href="#" class="py-5 px-10 text-2xl font-bold text-white bg-lightGreen rounded lg:py-4 hover:opacity-70">
+          <router-link :to="`/search`" class="py-5 px-10 text-2xl font-bold text-white bg-lightGreen rounded lg:py-4 hover:opacity-70">
             Get Started
-          </a>
+          </router-link>
         </div>
       </div>
 
