@@ -5,7 +5,7 @@ import RatioList from "@/components/RatioList/RatioList.vue";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
-const tableConfig = [
+const config = [
   {
     label: "Market Cap",
     render: (company: CompanyKeyMetrics) => company.marketCapTTM,
@@ -84,7 +84,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <RatioList v-if="companyData" :config="tableConfig" :data="companyData" />
+    <RatioList v-if="companyData" :config="config" :data="companyData" />
     <h1 v-else>No data found</h1>
   </div>
 </template>

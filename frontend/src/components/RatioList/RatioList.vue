@@ -9,7 +9,7 @@ defineProps<{
   <div class="bg-white shadow rounded-lg ml-4 mt-4 mb-4 p-4 sm:p-6 w-full">
     <ul class="divide-y divide-gray-200">
       <li v-for="(row) in config" class="py-6 sm:py-6">
-        <div class="flex items-center space-x-4">
+        <div :class="row.class" class="flex items-center space-x-4">
           <div class="flex-1 min-w-0">
             <p class="text-sm font-medium text-gray-900 truncate">
               {{ row.label }}

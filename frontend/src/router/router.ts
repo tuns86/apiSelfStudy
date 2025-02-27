@@ -1,3 +1,4 @@
+import BalanceSheet from "@/components/BalanceSheet/BalanceSheet.vue";
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
 import DesignGuide from "@/views/DesignGuide/DesignGuide.vue";
@@ -25,6 +26,7 @@ const routes = [
     children: [
       { path: "company-profile", component: CompanyProfile },
       { path: "income-statement", component: IncomeStatement },
+      { path: "balance-sheet", component: BalanceSheet },
     ]
   },
 ];
