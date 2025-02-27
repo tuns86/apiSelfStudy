@@ -1,4 +1,5 @@
 import BalanceSheet from "@/components/BalanceSheet/BalanceSheet.vue";
+import CashFlowStatement from "@/components/CashFlowStatement/CashFlowStatement.vue";
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
 import DesignGuide from "@/views/DesignGuide/DesignGuide.vue";
@@ -27,6 +28,7 @@ const routes = [
       { path: "company-profile", component: CompanyProfile },
       { path: "income-statement", component: IncomeStatement },
       { path: "balance-sheet", component: BalanceSheet },
+      { path: "cashflow-statement", component: CashFlowStatement },
     ]
   },
 ];

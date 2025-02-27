@@ -14,8 +14,7 @@ const config = [
   {
     label: "Current Ratio",
     render: (company: CompanyKeyMetrics) => company.currentRatioTTM,
-    subTitle:
-      "Measures the companies ability to pay short term debt obligations",
+    subTitle: "Measures the companies ability to pay short term debt obligations",
   },
   {
     label: "Return On Equity",
@@ -79,12 +78,11 @@ const getCompanyKeyRatios = async () => {
 onMounted(() => {
   getCompanyKeyRatios();
 });
-
 </script>
 
 <template>
   <div>
     <RatioList v-if="companyData" :config="config" :data="companyData" />
-    <h1 v-else>No data found</h1>
+    <h1 v-else>No result</h1>
   </div>
 </template>

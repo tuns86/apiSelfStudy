@@ -1,27 +1,10 @@
 <script setup lang="ts">
+import { getIncomeStatement } from "@/api";
+import type { CompanyIncomeStatement } from "@/company";
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import Table from "../Table/Table.vue";
 
-import { getIncomeStatement } from '@/api';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import Table from '../Table/Table.vue';
-interface CompanyIncomeStatement {
-  cik: string;
-  [key: string]: any;
-}
-
-const route = useRoute();
-const ticker = route.params.ticker as string;
-
-const incomeStatement = ref<CompanyIncomeStatement[]>();
-
-onMounted(async () => {
-  try {
-    const result = await getIncomeStatement(ticker);
-    incomeStatement.value = result?.data;
-  } catch (error) {
-    console.error("Error fetching income statement:", error);
-  }
-});
 const configs = [
   {
     label: "Date",
@@ -37,8 +20,7 @@ const configs = [
   },
   {
     label: "Depreciation",
-    render: (company: CompanyIncomeStatement) =>
-      company.depreciationAndAmortization,
+    render: (company: CompanyIncomeStatement) => company.depreciationAndAmortization,
   },
   {
     label: "Operating Income",
@@ -77,6 +59,20 @@ const configs = [
     render: (company: CompanyIncomeStatement) => company.incomeBeforeTaxRatio,
   },
 ];
+
+const route = useRoute();
+const ticker = route.params.ticker as string;
+
+const incomeStatement = ref<CompanyIncomeStatement[]>();
+
+onMounted(async () => {
+  try {
+    const result = await getIncomeStatement(ticker);
+    incomeStatement.value = result?.data;
+  } catch (error) {
+    console.error("Error fetching income statement:", error);
+  }
+});
 </script>
 
 <template>

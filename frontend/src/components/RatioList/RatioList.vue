@@ -4,7 +4,6 @@ defineProps<{
   data: any;
 }>();
 </script>
-
 <template>
   <div class="bg-white shadow rounded-lg ml-4 mt-4 mb-4 p-4 sm:p-6 w-full">
     <ul class="divide-y divide-gray-200">

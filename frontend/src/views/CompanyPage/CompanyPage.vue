@@ -10,7 +10,6 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const ticker = route.params.ticker as string;
 const company = ref<CompanyProfile>();
-const activeSidebarItem = ref<number>(1);
 
 onMounted(async () => {
   try {
@@ -27,10 +26,19 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="company" class="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+  <div
+    v-if="company"
+    class="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden"
+  >
     <Sidebar />
     <CompanyDashboard ticker="ticker">
       <Tile title="Company Name" :subTitle="company.companyName" />
+      <Tile title="Price" :subTitle="company.price.toString()" />
+      <Tile title="Sector" :subTitle="company.sector" />
+      <Tile title="DCF" :subTitle="company.dcf.toString()" />
+      <p class="bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4">
+        {{ company.description }}
+      </p>
     </CompanyDashboard>
   </div>
   <div v-else>Company Not Found!</div>
