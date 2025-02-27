@@ -15,9 +15,8 @@ const activeSidebarItem = ref<number>(1);
 onMounted(async () => {
   try {
     const result = await getCompanyProfile(ticker);
-    console.log("API response:", result);
     if (result) {
-      company.value = result; // ✅ Lấy phần tử đầu tiên từ mảng
+      company.value = result.data[0]; // ✅ Lấy phần tử đầu tiên từ mảng
     } else {
       console.error("No data found for the company:", ticker);
     }
@@ -30,7 +29,7 @@ onMounted(async () => {
 <template>
   <div v-if="company" class="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
     <Sidebar />
-    <CompanyDashboard >
+    <CompanyDashboard ticker="ticker">
       <Tile title="Company Name" :subTitle="company.companyName" />
     </CompanyDashboard>
   </div>

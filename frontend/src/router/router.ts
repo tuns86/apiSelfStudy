@@ -1,6 +1,6 @@
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
-import DesignPage from "@/views/DesignPage/DesignPage.vue";
+import DesignGuide from "@/views/DesignGuide/DesignGuide.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import CompanyPage from "../views/CompanyPage/CompanyPage.vue";
 import HomePage from "../views/HomePage/HomePage.vue";
@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: "/design-guide",
-    component: DesignPage,
+    component: DesignGuide,
   },
   {
     path: "/company/:ticker",

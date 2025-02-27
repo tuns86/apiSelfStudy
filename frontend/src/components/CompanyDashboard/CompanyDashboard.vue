@@ -1,5 +1,9 @@
 <script setup lang="ts">
+interface Props{
+  ticker: string;
+}
 
+const props = defineProps<Props>();
 </script>
 
 <template>
@@ -11,7 +15,7 @@
             <slot />
           </div>
           <div class="flex flex-wrap">
-            <router-view />
+            <router-view :context="props.ticker"/>
           </div>
         </div>
       </div>

@@ -1,40 +1,56 @@
 import axios from "axios";
-import type { CompanyProfile, CompanySearch } from "./company";
+import type { CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
 
-export interface SearchRespone {
+export interface SearchResponse {
   data: CompanySearch[];
 }
 
 export const searchCompanies = async (query: string) => {
   try {
-    const response = await axios.get(
+    const data = await axios.get<SearchResponse>(
       `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${import.meta.env.VITE_API_KEY}`
     );
-    return response.data; // Trả về dữ liệu thực tế
+    return data.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error("Axios error:", error.message);
-      return { error: error.message };
+      console.log("error message: ", error.message);
+      return error.message;
     } else {
-      console.error("Unexpected error:", error);
-      return { error: "An unexpected error has occurred." };
+      console.log("unexpected error: ", error);
+      return "An expected error has occured.";
     }
   }
 };
 
-export const getCompanyProfile = async (query: string): Promise<CompanyProfile | null> => {
+export const getCompanyProfile = async (query: string) => {
   try {
-    const response = await axios.get<{ data: CompanyProfile[] }>(
+    const data = await axios.get<CompanyProfile[]>(
       `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${import.meta.env.VITE_API_KEY}`
     );
-
-    if (Array.isArray(response.data) && response.data.length > 0) {
-      return response.data[0]; // ✅ Trả về object CompanyProfile duy nhất
-    } else {
-      return null; // ✅ Trả về null nếu API không có dữ liệu
-    }
+    return data;
   } catch (error: any) {
-    console.error("Error fetching company profile:", error.message);
-    return null;
+    console.log("error message: ", error.message);
+  }
+};
+
+export const getKeyMetrics = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyKeyMetrics[]>(
+      `https://financialmodelingprep.com/api/v3/key-metrics-ttm/AAPL?limit=40&apikey=${import.meta.env.VITE_API_KEY}`
+    );
+    return data;
+  } catch (error: any) {
+    console.log("error message: ", error.message);
+  }
+};
+
+export const getIncomeStatement = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyIncomeStatement[]>(
+      `https://financialmodelingprep.com/api/v3/income-statement/${query}?limit=40&apikey=${import.meta.env.VITE_API_KEY}`
+    );
+    return data;
+  } catch (error: any) {
+    console.log("error message: ", error.message);
   }
 };
