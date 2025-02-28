@@ -3,7 +3,7 @@ import { getCashFlowStatement } from "@/api";
 import type { CompanyCashFlow } from "@/company";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatLargeMonetaryNumber } from "../Helpers/NumberFormatting";
+import { formatLargeMonetaryNumber } from "../../helpers/NumberFormatting";
 import Spinner from "../Spinners/Spinner.vue";
 import Table from "../Table/Table.vue";
 

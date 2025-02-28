@@ -3,7 +3,7 @@ import { getIncomeStatement } from "@/api";
 import type { CompanyIncomeStatement } from "@/company";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatLargeMonetaryNumber, formatRatio } from "../Helpers/NumberFormatting";
+import { formatLargeMonetaryNumber, formatRatio } from "../../helpers/NumberFormatting";
 import Spinner from "../Spinners/Spinner.vue";
 import Table from "../Table/Table.vue";
 

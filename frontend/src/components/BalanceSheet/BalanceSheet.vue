@@ -3,7 +3,7 @@ import { getBalanceSheet } from "@/api";
 import type { CompanyBalanceSheet } from "@/company";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatLargeMonetaryNumber } from "../Helpers/NumberFormatting";
+import { formatLargeMonetaryNumber } from "../../helpers/NumberFormatting";
 import RatioList from "../RatioList/RatioList.vue";
 import Spinner from "../Spinners/Spinner.vue";
 

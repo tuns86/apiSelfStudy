@@ -20,11 +20,14 @@
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "epic-spinners": "^2.0.0",
+    "pinia": "^3.0.1",
     "uuid": "^11.1.0",
     "vue": "^3.5.13",
     "vue-chartjs": "^5.3.2",
     "vue-router": "^4.5.0",
-    "web-vitals": "^4.2.4"
+    "vue-toastification": "^2.0.0-rc.5",
+    "web-vitals": "^4.2.4",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
@@ -33,6 +36,7 @@
     "@types/node": "^22.13.4",
     "@types/uuid": "^10.0.0",
     "@types/vue-router": "^2.0.0",
+    "@types/yup": "^0.29.14",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
     "@vitest/eslint-plugin": "1.1.31",

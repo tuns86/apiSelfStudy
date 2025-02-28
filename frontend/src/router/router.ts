@@ -1,12 +1,14 @@
 import BalanceSheet from "@/components/BalanceSheet/BalanceSheet.vue";
-import CashFlowStatement from "@/components/CashFlowStatement/CashFlowStatement.vue";
+import CashflowStatement from "@/components/CashflowStatement/CashflowStatement.vue";
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
 import HistoricalDividend from "@/components/HistoricalDividend/HistoricalDividend.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
-import DesignGuide from "@/views/DesignGuide/DesignGuide.vue";
+import RegisterterPage from "@/views/RegisterterPage/RegisterterPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import CompanyPage from "../views/CompanyPage/CompanyPage.vue";
+import DesignGuide from "../views/DesignGuide/DesignGuide.vue";
 import HomePage from "../views/HomePage/HomePage.vue";
+import LoginPage from "../views/LoginPage/LoginPage.vue";
 import SearchPage from "../views/SearchPage/SearchPage.vue";
 
 const routes = [
@@ -19,6 +21,14 @@ const routes = [
     component: SearchPage,
   },
   {
+    path: "/login",
+    component: LoginPage,
+  },
+  {
+    path: "/register",
+    component: RegisterterPage,
+  },
+  {
     path: "/design-guide",
     component: DesignGuide,
   },
@@ -29,7 +39,7 @@ const routes = [
       { path: "company-profile", component: CompanyProfile },
       { path: "income-statement", component: IncomeStatement },
       { path: "balance-sheet", component: BalanceSheet },
-      { path: "cashflow-statement", component: CashFlowStatement },
+      { path: "cashflow-statement", component: CashflowStatement },
       { path: "historical-dividend", component: HistoricalDividend },
     ]
   },

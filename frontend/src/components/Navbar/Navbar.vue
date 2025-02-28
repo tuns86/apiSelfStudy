@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import logo from "./logo.png";
-
 </script>
 
 <template>
@@ -20,8 +19,13 @@ import logo from "./logo.png";
 
       <!-- Login & Signup -->
       <div class="hidden lg:flex items-center space-x-6 text-back">
-        <div class="hover:text-darkBlue">Login</div>
-        <a href="#" class="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70">
+        <router-link :to="`/login`">
+          <div class="hover:text-darkBlue">Login</div>
+        </router-link>
+        <a
+          href="#"
+          class="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
+        >
           Signup
         </a>
       </div>

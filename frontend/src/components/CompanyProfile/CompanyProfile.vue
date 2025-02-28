@@ -4,7 +4,7 @@ import type { CompanyKeyMetrics } from "@/company";
 import RatioList from "@/components/RatioList/RatioList.vue";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatLargeNonMonetaryNumber, formatRatio } from "../Helpers/NumberFormatting";
+import { formatLargeNonMonetaryNumber, formatRatio } from "../../helpers/NumberFormatting";
 import Spinner from "../Spinners/Spinner.vue";
 
 const config = [
