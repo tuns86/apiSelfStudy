@@ -43,12 +43,23 @@ const ticker = route.params.ticker as string;
             <font-awesome-icon :icon="faHome" />
             <h6 class="ml-3">Balance Sheet</h6>
           </router-link>
+
+          <!-- Cashflow Statement Link -->
           <router-link
             :to="`/company/${ticker}/cashflow-statement`"
             class="flex md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
           >
             <font-awesome-icon :icon="faHome" />
             <h6 class="ml-3">Cashflow Statement</h6>
+          </router-link>
+
+          <!-- Historical Dividend Link -->
+          <router-link
+            :to="`/company/${ticker}/historical-dividend`"
+            class="flex md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+          >
+            <font-awesome-icon :icon="faHome" />
+            <h6 class="ml-3">Historical Dividend</h6>
           </router-link>
         </div>
       </div>

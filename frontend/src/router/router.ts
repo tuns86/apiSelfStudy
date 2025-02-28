@@ -1,6 +1,7 @@
 import BalanceSheet from "@/components/BalanceSheet/BalanceSheet.vue";
 import CashFlowStatement from "@/components/CashFlowStatement/CashFlowStatement.vue";
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
+import HistoricalDividend from "@/components/HistoricalDividend/HistoricalDividend.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
 import DesignGuide from "@/views/DesignGuide/DesignGuide.vue";
 import { createRouter, createWebHistory } from "vue-router";
@@ -29,6 +30,7 @@ const routes = [
       { path: "income-statement", component: IncomeStatement },
       { path: "balance-sheet", component: BalanceSheet },
       { path: "cashflow-statement", component: CashFlowStatement },
+      { path: "historical-dividend", component: HistoricalDividend },
     ]
   },
 ];
