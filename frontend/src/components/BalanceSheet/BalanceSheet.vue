@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { getBalanceSheet } from '@/api';
-import type { CompanyBalanceSheet } from '@/company';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
-import RatioList from '../RatioList/RatioList.vue';
+import { getBalanceSheet } from "@/api";
+import type { CompanyBalanceSheet } from "@/company";
+import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+import RatioList from "../RatioList/RatioList.vue";
+import Spinner from "../Spinners/Spinner.vue";
 
 const config = [
   {
@@ -78,10 +79,8 @@ onMounted(() => {
 <template>
   <div>
     <RatioList v-if="companyData" :config="config" :data="companyData" />
-    <h1 v-else>Company data not found</h1>
+    <Spinner v-else></Spinner>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

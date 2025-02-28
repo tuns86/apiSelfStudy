@@ -3,6 +3,7 @@ import { getCashFlowStatement } from "@/api";
 import type { CompanyCashFlow } from "@/company";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import Spinner from "../Spinners/Spinner.vue";
 import Table from "../Table/Table.vue";
 
 const config = [
@@ -68,7 +69,7 @@ onMounted(async () => {
 <template>
   <div>
     <Table v-if="cashFlowData" :config="config" :data="cashFlowData" />
-    <h1 v-else>No result</h1>
+    <Spinner v-else></Spinner>
   </div>
 </template>
 

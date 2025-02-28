@@ -4,6 +4,7 @@ import type { CompanyKeyMetrics } from "@/company";
 import RatioList from "@/components/RatioList/RatioList.vue";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import Spinner from "../Spinners/Spinner.vue";
 
 const config = [
   {
@@ -83,6 +84,6 @@ onMounted(() => {
 <template>
   <div>
     <RatioList v-if="companyData" :config="config" :data="companyData" />
-    <h1 v-else>No result</h1>
+    <Spinner v-else></Spinner>
   </div>
 </template>

@@ -3,6 +3,7 @@ import { getCompanyProfile } from "@/api"; // Import API giống React
 import type { CompanyProfile } from "@/company"; // Import kiểu dữ liệu
 import CompanyDashboard from "@/components/CompanyDashboard/CompanyDashboard.vue";
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
+import Spinner from "@/components/Spinners/Spinner.vue";
 import Tile from "@/components/Tile/Tile.vue";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -41,5 +42,5 @@ onMounted(async () => {
       </p>
     </CompanyDashboard>
   </div>
-  <div v-else>Company Not Found!</div>
+  <Spinner v-else></Spinner>
 </template>

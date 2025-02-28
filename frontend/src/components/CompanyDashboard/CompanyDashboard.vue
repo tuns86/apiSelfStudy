@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface Props{
+interface Props {
   ticker: string;
 }
 
@@ -14,8 +14,8 @@ const props = defineProps<Props>();
           <div class="flex flex-wrap">
             <slot />
           </div>
-          <div class="flex flex-wrap">
-            <router-view :context="props.ticker"/>
+          <div class="flex flex-wrap mt-5 justify-center">
+            <router-view :context="props.ticker" />
           </div>
         </div>
       </div>

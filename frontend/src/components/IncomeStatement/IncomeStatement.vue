@@ -3,6 +3,7 @@ import { getIncomeStatement } from "@/api";
 import type { CompanyIncomeStatement } from "@/company";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import Spinner from "../Spinners/Spinner.vue";
 import Table from "../Table/Table.vue";
 
 const configs = [
@@ -78,6 +79,6 @@ onMounted(async () => {
 <template>
   <div>
     <Table v-if="incomeStatement" :config="configs" :data="incomeStatement" />
-    <h1 v-else>Could not find income statement.</h1>
+    <Spinner v-else></Spinner>
   </div>
 </template>
