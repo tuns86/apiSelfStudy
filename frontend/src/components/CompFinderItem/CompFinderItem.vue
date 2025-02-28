@@ -7,7 +7,6 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <
   <router-link
     :to="`/company/${ticker}/company-profile`"
     type="button"
