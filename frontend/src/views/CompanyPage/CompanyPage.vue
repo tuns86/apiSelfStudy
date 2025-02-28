@@ -4,6 +4,7 @@ import type { CompanyProfile } from "@/company"; // Import kiểu dữ liệu
 import CompanyDashboard from "@/components/CompanyDashboard/CompanyDashboard.vue";
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import Spinner from "@/components/Spinners/Spinner.vue";
+import TenKFinder from "@/components/TenKFinder/TenKFinder.vue";
 import Tile from "@/components/Tile/Tile.vue";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -37,13 +38,14 @@ onMounted(async () => {
       <Tile title="Price" :subTitle="company.price.toString()" />
       <Tile title="Sector" :subTitle="company.sector" />
       <Tile title="DCF" :subTitle="company.dcf.toString()" />
+      <!-- This Api is forbiden -->
+      <!-- <CompFinder :ticker="company.symbol" /> -->
+      <TenKFinder :ticker="company.symbol" />
       <p
         class="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4"
       >
         {{ company.description }}
       </p>
-      <!-- This Api is forbiden -->
-      <!-- <CompFinder :ticker="company.symbol" /> -->
     </CompanyDashboard>
   </div>
   <Spinner v-else></Spinner>
