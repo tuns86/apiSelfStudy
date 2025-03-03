@@ -22,12 +22,14 @@ import logo from "./logo.png";
         <router-link :to="`/login`">
           <div class="hover:text-darkBlue">Login</div>
         </router-link>
-        <a
-          href="#"
-          class="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
-        >
-          Signup
-        </a>
+
+        <router-link :to="`/register`">
+          <div
+            class="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
+          >
+            Sign Up
+          </div>
+        </router-link>
       </div>
     </div>
   </nav>

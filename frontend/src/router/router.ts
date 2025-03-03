@@ -3,7 +3,7 @@ import CashflowStatement from "@/components/CashflowStatement/CashflowStatement.
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
 import HistoricalDividend from "@/components/HistoricalDividend/HistoricalDividend.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
-import RegisterterPage from "@/views/RegisterterPage/RegisterterPage.vue";
+import RegisterPage from "@/views/RegisterPage/RegisterPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import CompanyPage from "../views/CompanyPage/CompanyPage.vue";
 import DesignGuide from "../views/DesignGuide/DesignGuide.vue";
@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: "/register",
-    component: RegisterterPage,
+    component: RegisterPage,
   },
   {
     path: "/design-guide",
