@@ -7,11 +7,14 @@
   </Suspense>
 </template>
 
-<script>
+<script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
-export default {
-  components: {
-    Navbar,
-  },
-};
+import { useAuthStore } from "@/context/useAuth";
+import { onMounted } from "vue";
+
+const authStore = useAuthStore();
+
+onMounted(() => {
+  authStore.initAuth(); // Gọi hàm khởi tạo khi ứng dụng tải lên
+});
 </script>

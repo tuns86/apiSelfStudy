@@ -1,45 +1,51 @@
+import type { UserProfile } from "@/models/User";
 import { loginAPI, registerAPI } from "@/services/AuthService";
 import axios from "axios";
 import { defineStore } from "pinia";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
 export const useAuthStore = defineStore("auth", () => {
   const toast = useToast();
   const router = useRouter();
-  const user = ref(JSON.parse(localStorage.getItem("user") || "null"));
+  // const user = ref(JSON.parse(localStorage.getItem("user") || "null"));
+  const user = ref<UserProfile | null>(
+    JSON.parse(localStorage.getItem("user") || "null")
+  );
   const token = ref(localStorage.getItem("token") || null);
   const isReady = ref(false);
 
-  // Cập nhật Authorization Header khi token thay đổi
-  watch(token, (newToken) => {
-    try {
-      if (newToken) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
-      } else {
-        delete axios.defaults.headers.common["Authorization"];
-      }
-    } catch (error) {
-      console.error("Failed to set Authorization header:", error);
+  const updateAuthHeader = () => {
+    if (token.value && user.value) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token.value}`;
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
     }
-  });
+  };
 
   // Kiểm tra dữ liệu từ localStorage khi ứng dụng khởi động
-  onMounted(() => {
+  const initAuth = () => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
     if (storedUser && storedToken) {
       user.value = JSON.parse(storedUser);
       token.value = storedToken;
-      axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+      updateAuthHeader();
     }
     isReady.value = true;
-  });
+  };
 
-  if (token.value) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token.value}`;
-  }
+  // Cập nhật headers khi token thay đổi
+  watch(token, updateAuthHeader);
+
+  // Hàm lưu dữ liệu auth vào localStorage
+  const setAuthData = (userObj: UserProfile, newToken: string) => {
+    localStorage.setItem("user", JSON.stringify(userObj));
+    localStorage.setItem("token", newToken);
+    user.value = userObj;
+    token.value = newToken;
+  };
 
   // Đăng ký tài khoản
   const registerUser = async (email: string, username: string, password: string) => {
@@ -48,14 +54,12 @@ export const useAuthStore = defineStore("auth", () => {
       if (res) {
         localStorage.setItem("token", res.data.token);
         const userObj = { userName: res.data.userName, email: res.data.email };
-        localStorage.setItem("user", JSON.stringify(userObj));
-        token.value = res.data.token;
-        user.value = userObj;
+        setAuthData(userObj, res.data.token);
         toast.success("Register Success!");
         router.push("/search");
       }
     } catch (e) {
-      toast.warning("Server error occured");
+      toast.warning("Server error occurred");
     }
   };
 
@@ -64,16 +68,13 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       const res = await loginAPI(username, password);
       if (res) {
-        localStorage.setItem("token", res.data.token);
         const userObj = { userName: res.data.userName, email: res.data.email };
-        localStorage.setItem("user", JSON.stringify(userObj));
-        token.value = res.data.token;
-        user.value = userObj;
+        setAuthData(userObj, res.data.token);
         toast.success("Login Success!");
         router.push("/search");
       }
     } catch (e) {
-      toast.warning("Server error occured");
+      toast.warning("Server error occurred");
     }
   };
 
@@ -85,8 +86,8 @@ export const useAuthStore = defineStore("auth", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     user.value = null;
-    token.value = null;
-    delete axios.defaults.headers.common["Authorization"];
+    token.value = "";
+    updateAuthHeader();
     router.push("/");
   };
 
@@ -104,5 +105,5 @@ export const useAuthStore = defineStore("auth", () => {
   //   }
   // };
 
-  return { user, token, loginUser, registerUser, logout, isLoggedIn, isReady };
+  return { user, token, loginUser, registerUser, logout, isLoggedIn, isReady, initAuth };
 });

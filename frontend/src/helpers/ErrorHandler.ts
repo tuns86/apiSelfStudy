@@ -2,10 +2,9 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
-const toast = useToast();
-const router = useRouter();
-
 export const handleError = (error: any) => {
+  const toast = useToast();
+  const router = useRouter();
 
   if (axios.isAxiosError(error)) {
     const err = error.response;

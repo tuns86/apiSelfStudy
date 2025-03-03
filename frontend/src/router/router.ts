@@ -3,6 +3,7 @@ import CashflowStatement from "@/components/CashflowStatement/CashflowStatement.
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile.vue";
 import HistoricalDividend from "@/components/HistoricalDividend/HistoricalDividend.vue";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement.vue";
+import { useAuthStore } from "@/context/useAuth";
 import RegisterPage from "@/views/RegisterPage/RegisterPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import CompanyPage from "../views/CompanyPage/CompanyPage.vue";
@@ -19,6 +20,7 @@ const routes = [
   {
     path: "/search",
     component: SearchPage,
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -35,6 +37,7 @@ const routes = [
   {
     path: "/company/:ticker",
     component: CompanyPage,
+    meta: { requiresAuth: true },
     children: [
       { path: "company-profile", component: CompanyProfile },
       { path: "income-statement", component: IncomeStatement },
@@ -48,6 +51,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.meta.requiresAuth && !authStore.isLoggedIn) {
+    next({ path: "/login", query: { redirect: to.fullPath } });
+  } else {
+    next();
+  }
 });
 
 export default router;

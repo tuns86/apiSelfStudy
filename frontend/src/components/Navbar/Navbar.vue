@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useAuthStore } from "@/context/useAuth";
+import { storeToRefs } from "pinia";
 import logo from "./logo.png";
+
+const authStore = useAuthStore();
+const { user, isLoggedIn } = storeToRefs(authStore);
 </script>
 
 <template>
@@ -16,9 +21,16 @@ import logo from "./logo.png";
           </router-link>
         </div>
       </div>
-
-      <!-- Login & Signup -->
-      <div class="hidden lg:flex items-center space-x-6 text-back">
+      <div v-if="isLoggedIn" class="hidden lg:flex items-center space-x-6 text-back">
+        <div class="hover:text-darkBlue">Welcome, {{ user?.userName }}</div>
+        <a
+          @click="authStore.logout"
+          class="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
+        >
+          Logout
+        </a>
+      </div>
+      <div v-else="isLoggedIn" class="hidden lg:flex items-center space-x-6 text-back">
         <router-link :to="`/login`">
           <div class="hover:text-darkBlue">Login</div>
         </router-link>
