@@ -4,9 +4,9 @@ import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
-import App from './App.vue';
+import App from './app.vue';
 import './measureWebVitals.ts';
-import router from './router/router.ts';
+import router from './router/Router.ts';
 
 const app = createApp(App);
 const pinia = createPinia();

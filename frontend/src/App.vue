@@ -9,7 +9,7 @@
 
 <script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
-import { useAuthStore } from "@/context/useAuth";
+import { useAuthStore } from "@/context/UseAuth";
 import { onMounted } from "vue";
 
 const authStore = useAuthStore();

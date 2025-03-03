@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuthStore } from "@/context/useAuth";
+import { useAuthStore } from "@/context/UseAuth";
 import { reactive, ref } from "vue";
 import { useToast } from "vue-toastification";
 import * as yup from "yup";

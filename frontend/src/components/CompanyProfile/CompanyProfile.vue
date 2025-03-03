@@ -4,8 +4,12 @@ import type { CompanyKeyMetrics } from "@/company";
 import RatioList from "@/components/RatioList/RatioList.vue";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatLargeNonMonetaryNumber, formatRatio } from "../../helpers/NumberFormatting";
+import {
+  formatLargeNonMonetaryNumber,
+  formatRatio,
+} from "../../helpers/NumberFormatting";
 import Spinner from "../Spinners/Spinner.vue";
+import StockComment from "../StockComment/StockComment.vue";
 
 const config = [
   {
@@ -85,8 +89,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div id="companyProfile" v-if="companyData">
     <RatioList v-if="companyData" :config="config" :data="companyData" />
-    <Spinner v-else></Spinner>
+    <StockComment :stockSymbol="ticker" />
+  </div>
+  <div id="companyProfile" v-else>
+    <Spinner />
   </div>
 </template>

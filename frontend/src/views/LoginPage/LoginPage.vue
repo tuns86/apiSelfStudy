@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuthStore } from "@/context/useAuth"; // Import từ Pinia
+import { useAuthStore } from "@/context/UseAuth"; // Import từ Pinia
 import { reactive, ref } from "vue";
 import { useToast } from "vue-toastification";
 import * as yup from "yup";

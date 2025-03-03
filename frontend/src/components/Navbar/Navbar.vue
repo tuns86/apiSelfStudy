@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuthStore } from "@/context/useAuth";
+import { useAuthStore } from "@/context/UseAuth";
 import { storeToRefs } from "pinia";
 import logo from "./logo.png";
 
