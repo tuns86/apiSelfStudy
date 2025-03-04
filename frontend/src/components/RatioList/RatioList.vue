@@ -25,7 +25,7 @@ defineProps<{
               </a>
             </p>
           </div>
-          <div class="inline-flex items-center text-base font-semibold text-gray-900">
+          <div class="inline-flex items-center text-base font-semibold">
             {{ row.render(data) }}
           </div>
         </div>

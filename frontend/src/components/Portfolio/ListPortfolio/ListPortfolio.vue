@@ -1,19 +1,13 @@
 <script setup lang="ts">
+import type { PortfolioGet } from "@/models/Portfolio";
 import CardPortfolio from "../CardPortfolio/CardPortfolio.vue";
 
 interface Props {
-  portfolioValues: string[];
+  portfolioValues: PortfolioGet[];
+  onPortfolioDelete: (symbol: string) => void;
 }
 
 const props = defineProps<Props>();
-
-const emit = defineEmits<{
-  (e: "portfolioDelete", symbol: string): void;
-}>();
-
-const onPortfolioDelete = (symbol: string) => {
-  emit("portfolioDelete", symbol);
-};
 </script>
 
 <template>
@@ -24,9 +18,9 @@ const onPortfolioDelete = (symbol: string) => {
     >
       <template v-if="props.portfolioValues.length > 0">
         <CardPortfolio
-          v-for="portfolioValue in portfolioValues"
+          v-for="portfolioValue in props.portfolioValues"
           :portfolioValue="portfolioValue"
-          @portfolio-delete="onPortfolioDelete"
+          :onPortfolioDelete="props.onPortfolioDelete"
         />
       </template>
     </div>

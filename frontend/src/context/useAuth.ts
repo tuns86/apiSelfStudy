@@ -56,7 +56,7 @@ export const useAuthStore = defineStore("auth", () => {
         const userObj = { userName: res.data.userName, email: res.data.email };
         setAuthData(userObj, res.data.token);
         toast.success("Register Success!");
-        router.push("/search");
+        router.push("/");
       }
     } catch (e) {
       toast.warning("Server error occurred");
@@ -71,7 +71,7 @@ export const useAuthStore = defineStore("auth", () => {
         const userObj = { userName: res.data.userName, email: res.data.email };
         setAuthData(userObj, res.data.token);
         toast.success("Login Success!");
-        router.push("/search");
+        router.push("/");
       }
     } catch (e) {
       toast.warning("Server error occurred");

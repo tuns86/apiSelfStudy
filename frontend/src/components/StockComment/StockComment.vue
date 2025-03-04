@@ -3,7 +3,7 @@
     <Spinner />
   </div>
   <div v-else class="flex flex-col">
-    <StockCommentList :comments="comments!" />
+    <StockCommentList :comments="comments || []" />
     <StockCommentForm :symbol="props.stockSymbol" :handleComment="handleComment" />
   </div>
 </template>

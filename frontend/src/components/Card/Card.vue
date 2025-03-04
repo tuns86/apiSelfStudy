@@ -5,17 +5,10 @@ import AddPortfolio from "@/components/Portfolio/AddPortfolio/AddPortfolio.vue";
 interface Props {
   id: string;
   searchResult: CompanySearch;
+  portfolioCreate: (symbol: string) => void;
 }
 
 const props = defineProps<Props>();
-
-const emit = defineEmits<{
-  (e: "portfolioCreate", symbol: string): void;
-}>();
-
-const onPortfolioCreate = (symbol: string) => {
-  emit("portfolioCreate", symbol); // Phát sự kiện lên CardList.vue
-};
 </script>
 
 <template>
@@ -33,6 +26,9 @@ const onPortfolioCreate = (symbol: string) => {
     <p class="font-bold text-veryDarkBlue">
       {{ props.searchResult.exchangeShortName }} - {{ props.searchResult.stockExchange }}
     </p>
-    <AddPortfolio @portfolioCreate="onPortfolioCreate" :symbol="searchResult.symbol" />
+    <AddPortfolio
+      :portfolioCreate="props.portfolioCreate"
+      :symbol="props.searchResult.symbol"
+    />
   </div>
 </template>
