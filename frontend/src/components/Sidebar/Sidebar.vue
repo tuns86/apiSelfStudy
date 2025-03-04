@@ -8,13 +8,13 @@ const ticker = route.params.ticker as string;
 
 <template>
   <nav
-    class="block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-all duration-300 ease-in-out transform md:translate-x-0 -translate-x-full"
+    class="block py-4 px-6 top-0 bottom-0 w-64 bg-gray-800 shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-all duration-300 ease-in-out transform md:translate-x-0 -translate-x-full"
   >
     <div
       class="flex-col min-h-full px-0 flex flex-wrap items-center justify-between w-full mx-auto overflow-y-auto overflow-x-hidden"
     >
       <div
-        class="flex bg-white flex-col items-stretch opacity-100 relative mt-4 overflow-y-auto overflow-x-hidden h-auto z-40 items-center flex-1 rounded w-full"
+        class="flex bg-gray-600 px-2 py-2 flex-col items-stretch opacity-100 relative mt-4 overflow-y-auto overflow-x-hidden h-auto z-40 items-center flex-1 rounded w-full"
       >
         <div class="md:flex-col md:min-w-full flex flex-col list-none">
           <!-- Company Profile Link -->

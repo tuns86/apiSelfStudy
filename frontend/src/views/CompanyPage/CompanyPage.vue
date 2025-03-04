@@ -42,7 +42,7 @@ onMounted(async () => {
       <!-- <CompFinder :ticker="company.symbol" /> -->
       <TenKFinder :ticker="company.symbol" />
       <p
-        class="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4"
+        class="bg-black shadow rounded text-medium font-medium text-lightGreen p-3 mt-1 m-4"
       >
         {{ company.description }}
       </p>

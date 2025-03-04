@@ -18,7 +18,7 @@ const onDelete = () => {
 
 <template>
   <div
-    class="flex flex-col w-full p-8 space-y-4 text-center rounded-lg shadow-lg md:w-1/3"
+    class="flex flex-col w-full p-8 space-y-4 text-center border-2 rounded-lg border-lightGreen shadow-lg md:w-1/3"
   >
     <router-link
       :to="`/company/${props.portfolioValue}/company-profile`"

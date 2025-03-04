@@ -16,7 +16,7 @@ const { user, isLoggedIn } = storeToRefs(authStore);
           <img :src="logo" alt="" />
         </router-link>
         <div class="hidden font-bold lg:flex">
-          <router-link to="/search" class="text-black hover:text-darkBlue">
+          <router-link to="/search" class="text-white font-bold hover:text-darkBlue">
             Search
           </router-link>
         </div>
@@ -32,7 +32,9 @@ const { user, isLoggedIn } = storeToRefs(authStore);
       </div>
       <div v-else="isLoggedIn" class="hidden lg:flex items-center space-x-6 text-back">
         <router-link :to="`/login`">
-          <div class="hover:text-darkBlue">Login</div>
+          <div class="hover:text-darkBlue px-8 py-3 rounded font-bold hover:opacity-70">
+            Login
+          </div>
         </router-link>
 
         <router-link :to="`/register`">

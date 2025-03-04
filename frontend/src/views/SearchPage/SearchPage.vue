@@ -6,7 +6,7 @@ import ListPortfolio from "@/components/Portfolio/ListPortfolio/ListPortfolio.vu
 import Search from "@/components/Search/Search.vue";
 import { ref } from "vue";
 
-const search = ref<string>('');
+const search = ref<string>("");
 const portfolioValues = ref<string[]>([]);
 const searchResult = ref<CompanySearch[]>([]);
 const serverError = ref<string | null>(null);
@@ -37,10 +37,17 @@ const onSearchSubmit = async (e: Event) => {
 </script>
 
 <template>
-  <div class="App">
-    <Search :onSearchSubmit="onSearchSubmit" :search="search" :handleSearchChange="handleSearchChange" />
+  <div class="Search">
+    <Search
+      :onSearchSubmit="onSearchSubmit"
+      :search="search"
+      :handleSearchChange="handleSearchChange"
+    />
     <div v-if="serverError">Unable to connect to API</div>
-    <ListPortfolio :portfolioValues="portfolioValues" :onPortfolioDelete="onPortfolioDelete" />
+    <ListPortfolio
+      :portfolioValues="portfolioValues"
+      :onPortfolioDelete="onPortfolioDelete"
+    />
     <CardList :searchResults="searchResult" @portfolioCreate="onPortfolioCreate" />
   </div>
 </template>
