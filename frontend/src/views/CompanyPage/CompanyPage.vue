@@ -38,7 +38,7 @@ onMounted(async () => {
       <Tile title="Price" :subTitle="'$' + company.price.toString()" />
       <Tile title="DCF" :subTitle="'$' + company.dcf.toString()" />
       <Tile title="Sector" :subTitle="company.sector" />
-      <!-- This Api is forbiden -->
+      <!-- This Api is exclusive -->
       <!-- <CompFinder :ticker="company.symbol" /> -->
       <TenKFinder :ticker="company.symbol" />
       <p

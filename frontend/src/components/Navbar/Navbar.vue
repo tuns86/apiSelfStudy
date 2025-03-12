@@ -15,7 +15,7 @@ const { user, isLoggedIn } = storeToRefs(authStore);
         <router-link to="/">
           <img :src="logo" alt="" />
         </router-link>
-        <div class="hidden font-bold lg:flex">
+        <div v-if="isLoggedIn" class="hidden font-bold lg:flex">
           <router-link to="/search" class="text-white font-bold hover:text-darkBlue">
             Search
           </router-link>

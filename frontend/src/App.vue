@@ -1,10 +1,8 @@
 <template>
-  <Suspense>
-    <div>
-      <Navbar />
-      <router-view />
-    </div>
-  </Suspense>
+  <div>
+    <Navbar />
+    <router-view />
+  </div>
 </template>
 
 <script setup>
